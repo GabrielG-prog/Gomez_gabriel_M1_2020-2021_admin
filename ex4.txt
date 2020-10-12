@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for group in $(cat /etc/group )
+do  
+  tmp=$( cut -d: -f1)
+    if [ $1 = $tmp ]
+    then
+      echo "Groupe existe"
+    else
+      echo "Le groupe n'existe pas"
+    fi
+done

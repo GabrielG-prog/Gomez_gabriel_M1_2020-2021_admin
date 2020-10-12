@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+# Vérification du nombre d'arguments
+
+check_args() {
+  nb_args=$1
+  if [ $nb_args -ne 0 ] 
+  then
+    echo "$nb_args good"
+  else
+    echo "error"
+    exit 2
+  fi
+}
+
+# Vérification de l'existence des fichiers
+
+existFiles() {
+  for file in $@
+  do
+    if [ -f "$file" ]; then
+        echo "$file exists."
+    else 
+        echo "$file not exist."
+    fi
+  done
+}
+
+check_args $#
+existFiles $@

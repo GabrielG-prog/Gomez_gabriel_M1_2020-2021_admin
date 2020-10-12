@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Vérification de l'existence des fichiers
+
+existFiles() {
+  for file in $@
+  do
+    if [ -f "$file" ]; then
+        echo "$file exists."
+    else 
+        echo "$file not exist."
+	exit 2
+    fi
+  done
+}
+
+existFiles $1
+
+# utiliser les case pour les différentes possibilités
+
+case $2 in 
+  copy)
+    cp "$1" /tmp/
+    ;;
+
+  delete)
+    rm -rf "$1"
+    ;;
+
+  read)
+    cat "$1"
+    ;;
+esac

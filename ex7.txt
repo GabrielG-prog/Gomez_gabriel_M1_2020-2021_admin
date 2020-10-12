@@ -1,0 +1,29 @@
+#!/bin/bash
+
+fileCommand() {
+  if [ ! -f "$1" ] && [ "$2" == "Ajouter" ]
+  then
+    touch $1
+    echo "Fichier crée"
+  elif [ -f "$1" ] && [ "$2" == "Supprimer" ]
+  then
+    rm -rf $1
+    echo "Fichier supprimé"
+  fi
+}
+
+printf "Voulez-vous ajouter ou supprimer un fichier : "
+read option
+
+case $option in
+  ajouter)
+    echo "Quel fichier vous voulez ajouter: "
+    read filename 
+    fileCommand $filename "ajouter"
+    ;;
+  supprimer)
+    echo "Quel fichier vous voulez supprimer: "
+    read filename
+    fileCommand $filename "supprimer"
+    ;;
+esac 

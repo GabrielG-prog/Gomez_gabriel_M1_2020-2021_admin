@@ -1,0 +1,37 @@
+#!/bin/bash
+
+found=false
+groupCommand() {
+  for group in $(cat /etc/group )
+  do  
+    tmp=$( cut -d: -f1)
+      if [ $1 = $tmp ]
+      then
+        found= true
+      fi
+  done
+
+  if [ found= true ] && [ $2 = "Ajouter" ]
+  then
+    sudo groupadd -m -p "$1" "$3"
+    echo "ajouté"
+  elif [ found = true ] && [ $2 = "Supprimer" ]
+    sudo groupdel $1
+    echo "supprimé"
+  fi
+}
+
+printf "Ajouter ou Supprimer un groupe : "
+read options
+
+case $options in
+  Ajouter)
+    printf "Le nom : "
+    read groupname
+    groupCommand $groupname "Ajouter"
+    ;;
+  Supprimer)
+    printf "Le nom : "
+    read groupname
+    groupCommand $groupname "Supprimer"
+esac

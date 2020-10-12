@@ -1,0 +1,22 @@
+#!/bin/bash
+
+checkFile() {
+  if [ -f $3 ]
+  then 
+    sudo chown $1:$2 $3
+    echo "les droits on bien été modifiés"
+  else
+    echo "Le fichier n'existe pas"
+  fi
+}
+
+printf "Utilisateur : "
+read user
+
+printf "Groupe : "
+read group
+
+printf "Fichier : "
+read file
+
+checkFile $user $group $file
